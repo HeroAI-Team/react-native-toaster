@@ -33,7 +33,7 @@ class Toast extends Component {
 
   state = { animatedValue: new Animated.Value(0), timeoutId: null }
 
-  componentWillMount () {
+  UNSAFE_componentWillMount () {
     this.showToast()
   }
 
@@ -42,7 +42,7 @@ class Toast extends Component {
     clearTimeout(timeoutId)
   }
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     if (this.props.id !== nextProps.id) {
       this.showToast()
     }
@@ -54,7 +54,7 @@ class Toast extends Component {
     this.setState({ animatedValue })
 
     Animated
-      .timing(animatedValue, { toValue: 1, duration: 350 })
+      .timing(animatedValue, { toValue: 1, duration: 350, useNativeDriver: false })
       .start()
 
     const { duration, onShow } = this.props
@@ -69,7 +69,7 @@ class Toast extends Component {
     clearTimeout(timeoutId)
 
     Animated
-      .timing(animatedValue, { toValue: 0, duration: 350 })
+      .timing(animatedValue, { toValue: 0, duration: 350, useNativeDriver: false })
       .start()
 
     setTimeout(this.props.onHide, 350)
