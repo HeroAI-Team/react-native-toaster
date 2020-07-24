@@ -48,9 +48,9 @@ class Toaster extends Component {
   }
 
   static getDerivedStateFromProps (nextProps, prevState) {
-    if (!nextProps.message) return
+    if (!nextProps.message) return null;
     const message = Toaster.cloneWithId(nextProps.message)
-    return{ messages: prevState.messages.concat(message) };
+    return {messages: prevState.messages.concat(message)}
   }
 
   onShow = () => {
