@@ -42,7 +42,7 @@ class Toast extends Component {
     clearTimeout(timeoutId)
   }
 
-  UNSAFE_componentWillReceiveProps (nextProps) {
+  componentDidUpdate (nextProps) {
     if (this.props.id !== nextProps.id) {
       this.showToast()
     }
